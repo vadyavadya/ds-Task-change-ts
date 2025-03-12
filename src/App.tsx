@@ -11,57 +11,85 @@ import ReducerHook from './components/doc-react/ReducerHook';
 import ContextHook from './components/doc-react/ContextHook';
 import DomEvent from './components/doc-react/DomEvent';
 import Home from './components/Home';
+import EffectHook from './components/doc-react/EffectHook';
 
+interface PageType {
+  path: string,
+  name: string,
+  element: React.ReactNode
+}
 
+const pages: PageType[] = [
+  {
+    path: '/',
+    name: 'Home',
+    element: <div>Page home</div>
+  },
+  {
+    path: 'props',
+    name: 'Передача prop',
+    element: <PropsComponent />
+  },
+  {
+    path: 'state',
+    name: 'State',
+    element: <StateHook />
+  },
+  {
+    path: 'reducer',
+    name: 'Reducer',
+    element: <ReducerHook />
+  },
+  {
+    path: 'effect',
+    name: 'Effect',
+    element: <EffectHook />
+  },
+  {
+    path: 'context',
+    name: 'Context',
+    element: <ContextHook />
+  },
+  {
+    path: 'dom-event',
+    name: 'Dom event',
+    element: <DomEvent />
+  },
+  {
+    path: 'task1',
+    name: 'Task 1',
+    element: <Task1 title="Task1" initialState={5} />
+  },
+  {
+    path: 'task2',
+    name: 'Task 2',
+    element: <Task2 />
+  },
+  {
+    path: 'task3',
+    name: 'Task 3',
+    element: <Task3 />
+  },
+  {
+    path: 'task4',
+    name: 'Task 4',
+    element: <Task4 />
+  },
+]
 function App() {
 
   return (
     <div className="App">
       <header className="App-header">
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/'>Home</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/props'>Передача prop</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/state'>State</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/reducer'>Reducer</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/context'>Context</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='/dom-event'>Dom event</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='task1'>Task 1</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='task2'>Task 2</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='task3'>Task 3</NavLink>
-        <NavLink className={({ isActive }) =>
-          isActive ? "App-link active" : "App-link"
-        } to='task4'>Task 4</NavLink>
+        {pages.map((page) => <NavLink 
+        className={({ isActive }) => isActive ? "App-link active" : "App-link"} 
+        to={page.path}>{page.name}</NavLink>
+        )}
       </header>
       <main className='main'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='task1' element={<Task1 title="Task1" initialState={5} />} />
-        <Route path='props' element={<PropsComponent />} />
-        <Route path='state' element={<StateHook />} />
-        <Route path='reducer' element={<ReducerHook />} />
-        <Route path='context' element={<ContextHook />} />
-        <Route path='dom-event' element={<DomEvent />} />
-        <Route path='task2' element={<Task2 />} />
-        <Route path='task3' element={<Task3 />} />
-        <Route path='task4' element={<Task4 />} />
-      </Routes>
+        <Routes>
+          {pages.map((page) => <Route path={page.path} element={page.element} /> )}
+        </Routes>
       </main>
     </div>
   );
