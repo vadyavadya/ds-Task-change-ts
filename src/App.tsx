@@ -12,6 +12,11 @@ import ContextHook from './components/doc-react/ContextHook';
 import DomEvent from './components/doc-react/DomEvent';
 import Home from './components/Home';
 import EffectHook from './components/doc-react/EffectHook';
+import RefHook from './components/doc-react/RefHook';
+import CustomHook from './components/doc-react/CustomHook';
+import FormNoLib from './components/doc-react/FormNoLib';
+import FormikMainComponent from './components/formik/FormikMainComponent';
+import FormikUseFormik from './components/formik/2FormikUseFormik';
 
 interface PageType {
   path: string,
@@ -46,6 +51,16 @@ const pages: PageType[] = [
     element: <EffectHook />
   },
   {
+    path: 'refhook',
+    name: 'RefHook',
+    element: <RefHook />
+  },
+  {
+    path: 'customhook',
+    name: 'CustomHook',
+    element: <CustomHook />
+  },
+  {
     path: 'context',
     name: 'Context',
     element: <ContextHook />
@@ -54,6 +69,21 @@ const pages: PageType[] = [
     path: 'dom-event',
     name: 'Dom event',
     element: <DomEvent />
+  },
+  {
+    path: 'form-no-lib',
+    name: 'Form no lib',
+    element: <FormNoLib />
+  },
+  {
+    path: 'form-formik',
+    name: 'Formik',
+    element: <FormikMainComponent />
+  },
+  {
+    path: 'form-formik-use-formik',
+    name: 'Formik UseFormik',
+    element: <FormikUseFormik />
   },
   {
     path: 'task1',
@@ -81,14 +111,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {pages.map((page) => <NavLink 
+        {pages.map((page) => <NavLink key={page.path}
         className={({ isActive }) => isActive ? "App-link active" : "App-link"} 
         to={page.path}>{page.name}</NavLink>
         )}
       </header>
       <main className='main'>
         <Routes>
-          {pages.map((page) => <Route path={page.path} element={page.element} /> )}
+          {pages.map((page) => <Route key={page.path} path={page.path} element={page.element} /> )}
         </Routes>
       </main>
     </div>
