@@ -60,11 +60,12 @@ const FormikUseFormik = () => {
         <label htmlFor="firstName">First name: </label>
         <input
           id="firstName"
-          name="firstName"
           type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.firstName}
+          // name="firstName"
+          // onChange={formik.handleChange}
+          // onBlur={formik.handleBlur}
+          // value={formik.values.firstName}
+          {...formik.getFieldProps('firstName')}
         />
         {formik.touched.firstName && formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
       </div>

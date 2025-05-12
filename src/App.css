@@ -18,16 +18,29 @@
   text-decoration: underline;
 }
 
-.main{
+.main {
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.container{
-
+.container {
 }
 
+.sub-menu {
+  display: none;
+  position: absolute;
+  list-style: none;
+  background-color: #282c34;
+  padding: 1rem 1rem;
+  margin: 0;
+  border-radius: 0px 0px 6px 6px;
+  box-shadow: black 0px 0px 6px  ;
+}
+
+.App-link:hover span + .sub-menu {
+  display: block;
+}
 
 @keyframes App-logo-spin {
   from {
